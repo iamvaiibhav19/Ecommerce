@@ -43,23 +43,17 @@ const Navbar = () => {
           <ul className="nav-tools-desktop">
             <li>
               <a href="#">
-                <FaSearch className="facebook" />
+                <FaSearch className="searchIcon" />
               </a>
             </li>
             <li>
-              <a
-                href="https://www.instagram.com/thapatechnical/"
-                target="_thapa"
-              >
-                <FaShoppingCart className="instagram" />
+              <a href="#">
+                <FaShoppingCart className="cartIcon" />
               </a>
             </li>
             <li>
-              <a
-                href="https://www.youtube.com/channel/UCwfaAHy4zQUb2APNOGXUCCA"
-                target="_thapa"
-              >
-                <FaUserCircle className="youtube" />
+              <a href="#">
+                <FaUserCircle className="userIcon" />
               </a>
             </li>
           </ul>

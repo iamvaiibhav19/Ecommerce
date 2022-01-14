@@ -111,16 +111,16 @@ li {
   display: none;
 }
 
-.facebook {
-  color: black;
+.searchIcon {
+  color: rgb(79, 79, 236);
 }
 
-.instagram {
-  color: blue;
+.cartIcon {
+  color: rgb(79, 79, 236);
 }
 
-.youtube {
-  color: blue;
+.userIcon {
+  color: rgb(79, 79, 236);
 }
 
 /* hero section   */
