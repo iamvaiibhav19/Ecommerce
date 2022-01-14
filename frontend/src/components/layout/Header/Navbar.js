@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import "./Navbar.scss";
 import React, { useState } from "react";
 import { FaSearch, FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";

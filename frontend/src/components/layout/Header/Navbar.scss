@@ -79,7 +79,7 @@ li {
   font-weight: 400;
   text-transform: uppercase;
   background: -webkit-linear-gradient(#eee, rgb(69, 57, 248));
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -112,36 +112,15 @@ li {
 }
 
 .searchIcon {
-  color: red;
+  color: #344cb7;
 }
 
 .cartIcon {
-  color: red;
+  color: #344cb7;
 }
 
 .userIcon {
-  color: red;
-}
-
-/* hero section   */
-
-.hero-section {
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.hero-section p {
-  font-size: 3rem;
-  text-transform: capitalize;
-}
-
-.hero-section h1 {
-  font-size: 5rem;
-  text-transform: uppercase;
-  text-align: center;
+  color: #344cb7;
 }
 
 /* responsive css style  */
@@ -189,8 +168,8 @@ li {
     padding-left: 3rem;
     transition: all 2s linear;
     transform-origin: top;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   }
 
   .mobile-menu-link ul {
