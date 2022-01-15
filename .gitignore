@@ -3,6 +3,8 @@ package-lock.json
 node_modules
 dist
 
+/backend/config/config.env
+
 docs/bundle.js
 logs
 *.log
