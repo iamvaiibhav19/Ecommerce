@@ -166,6 +166,8 @@
   margin: 5vmax auto;
 }
 
+// /*container css starts here*/
+
 /*product css starts here*/
 .productCard {
   width: 14vmax;
@@ -233,4 +235,13 @@
     margin: 0 0.5vmax;
     // font: 300 1vmax "Roboto";
   }
+}
+
+#container {
+  display: flex;
+  margin: 2vmax auto;
+  width: 80vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
 }
