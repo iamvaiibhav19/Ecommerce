@@ -4,6 +4,7 @@ import React from "react";
 import Footer from "./components/layout/Footer/Footer.js";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home.js";
+import Loader from "./components/layout/Loader/Loader";
 
 function App() {
   return (
