@@ -1,6 +1,6 @@
 .banner {
   background-image: linear-gradient(to right, #344cb7, white);
-  height: 100vh;
+  height: 100vmin;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -236,6 +236,10 @@
     margin: 0 0.5vmax;
     font-size: 1.8vmax;
     // font: 300 1vmax "Roboto";
+  }
+
+  .banner {
+    height: 100vh;
   }
 
   .featuredProducts {
