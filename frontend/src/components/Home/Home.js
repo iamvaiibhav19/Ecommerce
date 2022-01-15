@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
 import Navbar from "../layout/Header/Navbar";
 import FeaturedProduct from "./FeaturedProduct";
 import "./Home.scss";
 import Product from "./Product.js";
 import MetaData from "../layout/MetaData";
+import { getProduct } from "../../actions/productAction";
+import { useSelector, useDispatch } from "react-redux";
 
 const product = {
   name: "Blue Tshirt",
@@ -16,6 +18,12 @@ const product = {
 const title = "SastiCheeze";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProduct());
+  }, [dispatch]);
+
   return (
     <>
       <MetaData title={title} />

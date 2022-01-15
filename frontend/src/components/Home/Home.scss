@@ -1,6 +1,6 @@
 .banner {
   background-image: linear-gradient(to right, #344cb7, white);
-  height: 100vmin;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -206,7 +206,7 @@
 
 .productCard > span {
   margin: 0.5vmax;
-  color: tomato;
+  color: #344cb7;
   //   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 1vmax;
 }
@@ -219,7 +219,7 @@
 
 @media screen and (max-width: 600px) {
   .productCard > p {
-    font-size: 1.7vmax;
+    font-size: 2.2vmax;
   }
 
   .productCard > div {
@@ -228,12 +228,32 @@
   }
 
   .productCard > span {
-    font-size: 1.5vmax;
+    font-size: 2vmax;
+    font-weight: 500;
   }
 
   .productCard > div > span {
     margin: 0 0.5vmax;
+    font-size: 1.8vmax;
     // font: 300 1vmax "Roboto";
+  }
+
+  .featuredProducts {
+    font-size: 2.7vmax;
+  }
+
+  .banner {
+    P {
+      font-size: 2.5vmax;
+    }
+  }
+
+  .productCard {
+    width: 20vmax;
+  }
+
+  .productCard img {
+    width: 20vmax;
   }
 }
 
