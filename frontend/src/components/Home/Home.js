@@ -1,7 +1,16 @@
 import React from "react";
 import { CgMouse } from "react-icons/cg";
 import Navbar from "../layout/Header/Navbar";
+import FeaturedProduct from "./FeaturedProduct";
 import "./Home.scss";
+import Product from "./Product.js";
+
+const product = {
+  name: "Blue Tshirt",
+  images: [{ url: "https://i.ibb.co/DRST11n/1.webp" }],
+  price: "Rs. 100",
+  _id: "vaibhavv",
+};
 
 const Home = () => {
   return (
@@ -17,6 +26,10 @@ const Home = () => {
         </a>
       </div>
       <Navbar />
+      <FeaturedProduct />
+      <div className="container" id="container">
+        <Product product={product} />
+      </div>
     </>
   );
 };
