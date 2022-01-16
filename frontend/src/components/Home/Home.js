@@ -9,6 +9,7 @@ import { getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import FirebaseAuth from "./FirebaseAuth";
 
 /*dummy data*/
 // const product = {

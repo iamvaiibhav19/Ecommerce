@@ -1,17 +1,24 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
+var cors = require("cors");
+
 const app = express();
 
 const errorMiddleware = require("./middlewares/error");
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 //route imports
 const product = require("./routes/productRoutes");
 const user = require("./routes/userRoutes");
 const order = require("./routes/orderRoutes");
+
+// app.use("/", (req, res) => {
+//   res.send("sasti cheeze");
+// });
 
 app.use("/api/v1", product);
 app.use("/api/v1", user);

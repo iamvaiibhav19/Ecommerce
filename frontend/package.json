@@ -7,6 +7,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
+    "firebase": "^9.6.3",
     "overlay-navbar": "^1.1.1",
     "react": "^17.0.2",
     "react-alert": "^7.0.3",
@@ -53,6 +54,5 @@
   },
   "resolutions": {
     "mini-css-extract-plugin": "2.4.5"
-  },
-  "proxy": "http://192.168.43.122:1919"
+  }
 }

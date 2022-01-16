@@ -13,7 +13,9 @@ export const getProduct = () => async (dispatch) => {
       type: ALL_PRODUCT_REQUEST,
     });
 
-    const { data } = await axios.get("/api/v1/products");
+    const { data } = await axios.get(
+      "https://sasticheezeecom-production.up.railway.app/api/v1/products"
+    );
 
     dispatch({
       type: ALL_PRODUCT_SUCCESS,
