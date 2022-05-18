@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+  createAdmin,
   registerUser,
   loginUser,
   logoutUser,
@@ -25,6 +26,11 @@ router.route("/password/reset/:token").put(resetPassword);
 router.route("/me").get(isAuthenticatedUser, getUserDetails);
 router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 router.route("/me/update").put(isAuthenticatedUser, updateUserProfile);
+
+router
+  .route("/admin/new")
+  .post(isAuthenticatedUser, authorisedRoles("admin"), createAdmin);
+
 router
   .route("/admin/user/:id")
   .get(isAuthenticatedUser, authorisedRoles("admin"), getUser)

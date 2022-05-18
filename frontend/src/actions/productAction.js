@@ -14,7 +14,7 @@ export const getProduct = () => async (dispatch) => {
     });
 
     const { data } = await axios.get(
-      "https://sasticheezeecom-production.up.railway.app/api/v1/products"
+      "https://sasticheeze.herokuapp.com/api/v1/products"
     );
 
     dispatch({

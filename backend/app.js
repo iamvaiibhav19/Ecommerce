@@ -15,11 +15,9 @@ app.use(cors());
 const product = require("./routes/productRoutes");
 const user = require("./routes/userRoutes");
 const order = require("./routes/orderRoutes");
+const defaultRoute = require("./routes/defaultRoute");
 
-// app.use("/", (req, res) => {
-//   res.send("sasti cheeze");
-// });
-
+app.use("/", defaultRoute);
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);

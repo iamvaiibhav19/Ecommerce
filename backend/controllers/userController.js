@@ -260,3 +260,26 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     message: `User ${user.name} deleted successfully`,
   });
 });
+
+//create admin
+exports.createAdmin = catchAsyncErrors(async (req, res, next) => {
+  const newUser = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    avatar: {
+      public_id: "This is a temporary public id",
+      url: "profilepicurl",
+    },
+    role: "admin",
+  };
+
+  //we will add cloudinary image upload later
+
+  const user = await User.create(newUser);
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
