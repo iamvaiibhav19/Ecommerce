@@ -6,10 +6,8 @@ import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
 import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
-  const navigate = useNavigate();
+const Cart = ({ history }) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -34,7 +32,7 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    history.push("/login?redirect=shipping");
   };
 
   return (
@@ -67,20 +65,7 @@ const Cart = () => {
                     >
                       -
                     </button>
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      readOnly
-                      style={{
-                        width: "40px",
-                        height: "40px",
-                        border: "none",
-                        textAlign: "center",
-                        justifyContent: "center",
-                        fontSize: "1.8vmax",
-                        fontWeight: "bold",
-                      }}
-                    />
+                    <input type="number" value={item.quantity} readOnly />
                     <button
                       onClick={() =>
                         increaseQuantity(

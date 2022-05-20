@@ -20,7 +20,7 @@ const categories = [
   "SmartPhones",
 ];
 
-const Products = () => {
+const Products = ({ match }) => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
@@ -40,8 +40,7 @@ const Products = () => {
     filteredProductsCount,
   } = useSelector((state) => state.products);
 
-  //get keyword from url
-  const keyword = window.location.pathname.split("/")[2];
+  const keyword = match.params.keyword;
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);

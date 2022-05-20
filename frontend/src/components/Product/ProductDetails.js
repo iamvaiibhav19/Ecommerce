@@ -22,14 +22,13 @@ import {
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
-const ProductDetails = () => {
+const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
-  const productId = window.location.pathname.split("/")[2];
 
   const { success, error: reviewError } = useSelector(
     (state) => state.newReview
@@ -49,25 +48,20 @@ const ProductDetails = () => {
 
   const increaseQuantity = () => {
     if (product.Stock <= quantity) return;
-    console.log("increaseQuantity");
 
     const qty = quantity + 1;
-    console.log(qty, "qty");
     setQuantity(qty);
   };
 
   const decreaseQuantity = () => {
-    console.log("decreaseQuantity");
     if (1 >= quantity) return;
 
     const qty = quantity - 1;
-    console.log(qty, "qty");
-
     setQuantity(qty);
   };
 
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(productId, quantity));
+    dispatch(addItemsToCart(match.params.id, quantity));
     alert.success("Item Added To Cart");
   };
 
@@ -80,7 +74,7 @@ const ProductDetails = () => {
 
     myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productId", productId);
+    myForm.set("productId", match.params.id);
 
     dispatch(newReview(myForm));
 
@@ -102,8 +96,8 @@ const ProductDetails = () => {
       alert.success("Review Submitted Successfully");
       dispatch({ type: NEW_REVIEW_RESET });
     }
-    dispatch(getProductDetails(productId));
-  }, [dispatch, productId, error, alert, reviewError, success]);
+    dispatch(getProductDetails(match.params.id));
+  }, [dispatch, match.params.id, error, alert, reviewError, success]);
 
   return (
     <Fragment>
@@ -144,22 +138,7 @@ const ProductDetails = () => {
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
                     <button onClick={decreaseQuantity}>-</button>
-                    <input
-                      readOnly
-                      type="number"
-                      value={quantity}
-                      style={{
-                        //value is not showing in input
-                        width: "40px",
-                        height: "40px",
-                        border: "none",
-                        textAlign: "center",
-                        justifyContent: "center",
-                        fontSize: "1.8vmax",
-                        fontWeight: "bold",
-                        // font: "400 1.8vmax";
-                      }}
-                    />
+                    <input readOnly type="number" value={quantity} />
                     <button onClick={increaseQuantity}>+</button>
                   </div>
                   <button

@@ -4,18 +4,15 @@ import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import Navbar from "../layout/Header/Navbar";
-import { useNavigate } from "react-router-dom";
 
 const Profile = ({ history }) => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated === false) {
-      navigate("/login");
+      history.push("/login");
     }
-  }, [navigate, isAuthenticated]);
+  }, [history, isAuthenticated]);
   return (
     <Fragment>
       {loading ? (
@@ -23,7 +20,6 @@ const Profile = ({ history }) => {
       ) : (
         <Fragment>
           <MetaData title={`${user.name}'s Profile`} />
-          <Navbar />
           <div className="profileContainer">
             <div>
               <h1>My Profile</h1>

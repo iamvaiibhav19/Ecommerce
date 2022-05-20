@@ -37,6 +37,7 @@ import {
 export const productsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
+    case ADMIN_PRODUCT_REQUEST:
       return {
         loading: true,
         products: [],
@@ -50,7 +51,13 @@ export const productsReducer = (state = { products: [] }, action) => {
         filteredProductsCount: action.payload.filteredProductsCount,
       };
 
+    case ADMIN_PRODUCT_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload,
+      };
     case ALL_PRODUCT_FAIL:
+    case ADMIN_PRODUCT_FAIL:
       return {
         loading: false,
         error: action.payload,
@@ -100,7 +107,7 @@ export const newProductReducer = (state = { product: {} }, action) => {
   }
 };
 
-export const productReducer = (state = { products: [] }, action) => {
+export const productReducer = (state = {}, action) => {
   switch (action.type) {
     case DELETE_PRODUCT_REQUEST:
     case UPDATE_PRODUCT_REQUEST:
