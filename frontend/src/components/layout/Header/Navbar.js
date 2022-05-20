@@ -2,6 +2,7 @@ import "./Navbar.scss";
 import React, { useState } from "react";
 import { FaSearch, FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showMediaIcons, setShowMediaIcons] = useState(false);
@@ -24,16 +25,16 @@ const Navbar = () => {
         >
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Products</a>
+              <Link to="/products">Products</Link>
             </li>
             <li>
-              <a href="#">Contact</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a href="#">About</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>
@@ -42,19 +43,19 @@ const Navbar = () => {
         <div className="nav-tools">
           <ul className="nav-tools-desktop">
             <li>
-              <a href="#">
+              <Link to="/search">
                 <FaSearch className="searchIcon" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="/Cart">
                 <FaShoppingCart className="cartIcon" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link to="/login">
                 <FaUserCircle className="userIcon" />
-              </a>
+              </Link>
             </li>
           </ul>
 

@@ -3,9 +3,9 @@ import { CgMouse } from "react-icons/cg";
 import Navbar from "../layout/Header/Navbar";
 import FeaturedProduct from "./FeaturedProduct";
 import "./Home.scss";
-import Product from "./Product.js";
+import ProductCard from "./ProductCard.js";
 import MetaData from "../layout/MetaData";
-import { getProduct } from "../../actions/productAction";
+import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
@@ -30,10 +30,11 @@ const Home = () => {
 
   useEffect(() => {
     if (error) {
-      return alert.error(error);
+      alert.error(error);
+      dispatch(clearErrors());
     }
     dispatch(getProduct());
-  }, [dispatch, error]);
+  }, [dispatch, error, alert]);
 
   return (
     <>
@@ -42,22 +43,12 @@ const Home = () => {
       ) : (
         <>
           <MetaData title={title} />
-          <div className="banner">
-            <p>Welcome to SastiCheeze.com</p>
-            <h1>FIND AMAZING PRODUCTS FOR REASONABLE PRICES</h1>
 
-            <a href="#1">
-              <button>
-                Scroll <CgMouse />
-              </button>
-            </a>
-          </div>
-          <Navbar />
           <FeaturedProduct />
           <div className="container" id="container">
             {products &&
               products.map((product) => (
-                <Product key={product._id} product={product} />
+                <ProductCard key={product._id} product={product} />
               ))}
           </div>
         </>

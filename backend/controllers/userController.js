@@ -4,9 +4,16 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
+const cloudinary = require("cloudinary");
 
 //register a user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+
   const { name, email, password } = req.body;
 
   const user = await User.create({
@@ -15,7 +22,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     password,
     avatar: {
       public_id: "This is a temporary public id",
-      url: "profilepicurl",
+      url: myCloud.secure_url,
     },
   });
 
@@ -75,9 +82,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   //send reset password email
-  const resetURL = `${req.protocol}://${req.get(
-    "host"
-  )}/api/v1/password/reset/${resetToken}`;
+  const resetURL = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
   const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Your Password reset token is: \n\n ${resetURL}`;
 
@@ -174,6 +179,25 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
   };
+
+  if (req.body.avatar !== "") {
+    const user = await User.findById(req.user.id);
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
+
+    newUser.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
 
   //we will add cloudinary image upload later
 
