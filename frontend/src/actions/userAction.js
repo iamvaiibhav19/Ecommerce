@@ -37,13 +37,21 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import Cookies from "universal-cookie";
 
 // Login
+
+var cookies = new Cookies();
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
 
     const { data } = await axios.post(
       `https://sasticheeze.herokuapp.com/api/v1/login`,
@@ -51,9 +59,19 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
 
-    console.log(data, "loogin data");
-
+    cookies.set("token", data.token, {
+      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+    });
+    //set cookie
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+
+    // const [, setCookie] = useCookies(["token"]);
+    // if (data.token) {
+    //   setCookie("token", data.token);
+    //   console.log("cookieset");
+    // }
+
+    // console.log(data, "loogin data");
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
   }
@@ -71,7 +89,9 @@ export const register = (userData) => async (dispatch) => {
       userData,
       config
     );
-
+    cookies.set("token", data.token, {
+      expires: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000),
+    });
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({
@@ -86,11 +106,16 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
+    const token = cookies.get("token");
+
     const { data } = await axios.get(
-      `https://sasticheeze.herokuapp.com/api/v1/me`
+      `https://sasticheeze.herokuapp.com/api/v1/me`,
+      { params: { token: { token } } }
     );
 
-    dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+    if (token) {
+      dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+    }
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
   }
